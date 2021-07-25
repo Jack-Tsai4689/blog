@@ -12,14 +12,22 @@
 		<div class="row" style="margin-top: 45px">
 			<div class="col-md-4 col-md-offset-4">
 				<h4>Login</h4><hr>
-				<form method="post">
+				<form method="post" action="{{ route('auth.check') }}">
+					@if (Session::get('fail'))
+						<div class="alert alert-danger">
+							{{ Session::get("fail") }}
+						</div>
+					@endif
+					@csrf
 					<div class="form-group">
 						<label>Email</label>
-						<input type="text" class="form-control" name="email" placeholder="請輸入Email">
+						<input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="請輸入Email">
+						<span class="text-danger">@error('email') {{ $message }} @enderror</span>
 					</div>
 					<div class="form-group">
 						<label>Password</label>
 						<input type="password" class="form-control" name="password" placeholder="請輸入密碼">
+						<span class="text-danger">@error('password') {{ $message }} @enderror</span>
 					</div>
 					<button type="submit" class="btn btn-block btn-primary">登入</button>
 					<br>

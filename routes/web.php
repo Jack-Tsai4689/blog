@@ -21,7 +21,8 @@ Route::get('/', function () {
 Route::group(['prefix' => 'user'], function(){
 	Route::get('login', [UsersController::class, 'login'])->name('auth.login');
 	Route::get('register', [UsersController::class, 'register'])->name('auth.register');
-	Route::post('login', [UsersController::class, 'save'])->name('auth.save');	
+	Route::post('save', [UsersController::class, 'save'])->name('auth.save');
+	Route::post('login', [UsersController::class, 'check'])->name('auth.check');
 });
 Route::group(['prefix' => 'article'], function(){
 	Route::get('/', [MainController::class, 'article'])->name('articles');
